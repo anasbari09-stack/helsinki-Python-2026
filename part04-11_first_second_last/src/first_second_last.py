@@ -3,7 +3,7 @@
 def first_word(sentence):
     find1 = sentence.find(" ")
     return sentence[:find1]
-def second_word(sentence):
+def second_word(sentence)
     find1 = sentence.find(" ")
     find2 = sentence[(find1 +1):].find(" ")
     if find2 == -1:
