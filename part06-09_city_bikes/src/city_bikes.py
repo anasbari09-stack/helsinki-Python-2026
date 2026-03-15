@@ -1,3 +1,4 @@
+import math # bach mnb9awch n3ayto 3la liberary kola mara 
 def get_station_data(filename: str):
     distance_dic = {}
     with open(filename) as f:
@@ -9,7 +10,7 @@ def get_station_data(filename: str):
         return distance_dic
 
 def distance(stations: dict, station1: str, station2: str):
-    import math
+    
 
     longitude1 = stations[station1][0]
     longitude2 = stations[station2][0]
@@ -22,18 +23,22 @@ def distance(stations: dict, station1: str, station2: str):
     return distance_km
 
 def greatest_distance(stations: dict):
-    greatest_distance = 0
-    station_1 = ""
-    station_2 = ""
+    greatest_distance = -1
+    station_names = list(stations.keys()) # give us just keys in our dic it's the name of station
+    best_pair = ("", "") 
 
-    for station1 in stations:
-        for station2 in stations:
-            distance_km = distance(stations, station1, station2)
-            if distance_km > greatest_distance:
-                greatest_distance = distance_km
-                station_1 = station1
-                station_2 = station2
-    return (station_1, station_2, greatest_distance)
+    for i in range(len(station_names)):
+        # loop don't repeat the same calculation of 2 station start from i + 1
+        for j in range(i+1, len(station_names)):
+            s1 = station_names[i]
+            s2 = station_names[j]
+            d = distance(stations, s1, s2)
+            if d > greatest_distance:
+                greatest_distance = d
+                best_pair = (s1, s2)
+    return (best_pair[0], best_pair[1], greatest_distance)
+
+
 
 
 
