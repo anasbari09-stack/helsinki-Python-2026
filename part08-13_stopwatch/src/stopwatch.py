@@ -20,3 +20,4 @@ if __name__ == "__main__":
     for i in range(3610):
         print(watch)
         watch.tick()
+
