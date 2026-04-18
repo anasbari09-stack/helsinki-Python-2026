@@ -31,3 +31,52 @@ class WordGame():
         print(f"player 1: {self.wins1}")
         print(f"player 2: {self.wins2}")
 
+class LongestWord(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        if len(player1_word) > len(player2_word):
+            return 1
+        elif len(player1_word) < len(player2_word):
+            return 2
+        else:
+            return 0
+    
+class MostVowels(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+
+    def round_winner(self, player1_word: str, player2_word: str):
+        player1_vowels = 0
+        player2_vowels = 0
+        vowels = "aeiou"
+        for l in player1_word:
+            if l in vowels:
+                player1_vowels += 1
+        for l in player2_word:
+            if l in vowels:
+                player2_vowels += 1
+        if player1_vowels > player2_vowels:
+            return 1
+        elif player1_vowels < player2_vowels:
+            return 2
+        else:
+            return 0
+class RockPaperScissors(WordGame):
+    def __init__(self, rounds: int):
+        super().__init__(rounds)
+    def round_winner(self, player1_word: str, player2_word: str):
+        valid_list = ["rock", "scissors", "paper"]
+       
+        if player1_word == "rock" and player2_word == "scissors" or player1_word == "scissors" and player2_word == "paper" or player1_word == "paper" and player2_word == "rock" or player1_word in valid_list and player2_word not in valid_list:
+                return 1
+        
+        elif player2_word == "rock" and player1_word == "scissors" or player2_word == "scissors" and player1_word == "paper" or player2_word == "paper" and player1_word == "rock" or player2_word in valid_list and player1_word not in valid_list:
+                return 2
+        else:
+            return 0
+if __name__ == "__main__":
+    p = RockPaperScissors(4)
+    p.play()
+           
